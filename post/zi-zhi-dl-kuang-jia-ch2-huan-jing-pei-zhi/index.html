@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://mrcuriosity.top/favicon.ico?v=1597218972726">
+<link rel="shortcut icon" href="https://mrcuriosity.top/favicon.ico?v=1597410571857">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://mrcuriosity.top/styles/main.css">
 
@@ -39,7 +39,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://mrcuriosity.top">
-        <img class="avatar" src="https://mrcuriosity.top/images/avatar.png?v=1597218972726" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://mrcuriosity.top/images/avatar.png?v=1597410571857" alt="" width="32px" height="32px">
       </a>
       <a href="https://mrcuriosity.top">
         <h1 class="site-title">Curiosity&#39;s Blog</h1>
@@ -105,8 +105,7 @@
             
           </div>
           <div class="post-content">
-            <p>json 解析库和矩阵运算库配置还是费了番功夫</p>
-<p>json 解析选择 jsoncpp，矩阵运算选择armadillo，二者都可以使用 brew 直接安装</p>
+            <p>总体设计模仿 Caffe，使用配置文件定义网络结构和训练参数（后期可能会改成 Api 调用，不过关系不大），配置文件用 json 格式定义，使用 jsoncpp 进行解析，矩阵运算选择 armadillo，二者都可以使用 brew 直接安装。</p>
 <pre><code class="language-bash">brew install jsoncpp
 brew install armadillo
 </code></pre>

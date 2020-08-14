@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>关于 | Curiosity&#39;s Blog</title>
+<title>自制DL框架 Ch3 基础数据结构 | Curiosity&#39;s Blog</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -89,24 +89,48 @@
       <div class="content-container">
         <div class="post-detail">
           
-          <h2 class="post-title">关于</h2>
+          <h2 class="post-title">自制DL框架 Ch3 基础数据结构</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-01-25</span>
+            <span><i class="icon-calendar-outline"></i> 2020-08-12</span>
             
           </div>
           <div class="post-content">
-            <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+            <h1 id="blob">Blob</h1>
+<p>目前这个框架的重点是一些简单的 CV 网络结构，Caffe 的基础数据结构是 Blob，用来存储训练数据、网络权重、前向/反向传播的梯度等，这里基于 Armadillo 的 cube（类似三维张量）实现 Blob 数据类型。</p>
+<pre><code class="language-cpp">class Blob
+{
+public:
+    Blob(const int n, const int c, const int h, const int w, int type = FILL_DEFAULT);
+    Blob(vector&lt;cube&gt; data);
+    void print(string str = &quot;&quot;);
+    vector&lt;cube&gt;&amp; get_data();
+    cube&amp; operator[] (const int i);
+    Blob&amp; operator*= (const double i);
+    Blob subBlob(int start, int end);
+
+private:
+    int N;
+    int C;
+    int H;
+    int W;
+    vector&lt;cube&gt; data;
+};
+</code></pre>
+<p>实现了基本的构造函数，可以选择0、高斯等多种初始化方式、基于 vector 的构造函数，重载了 <code>[]</code> 和 <code>*=</code> 运算符，以及训练时分批读取的 subBlob 函数。</p>
+<h1 id="数据读取">数据读取</h1>
 
           </div>
         </div>
 
         
+          <div class="next-post">
+            <a class="purple-link" href="https://mrcuriosity.top/post/zi-zhi-dl-kuang-jia-ch2-huan-jing-pei-zhi/">
+              <h3 class="post-title">
+                下一篇：自制DL框架 Ch2 环境配置
+              </h3>
+            </a>
+          </div>
+          
       </div>
 
       
