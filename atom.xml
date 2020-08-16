@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mrcuriosity.top</id>
     <title>Curiosity&apos;s Blog</title>
-    <updated>2020-08-16T14:10:51.118Z</updated>
+    <updated>2020-08-16T14:24:29.883Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mrcuriosity.top"/>
     <link rel="self" href="https://mrcuriosity.top/atom.xml"/>
@@ -60,7 +60,7 @@ BN 起作用的理论依据可以参考：<a href="https://www.cnblogs.com/guoya
 <img src="https://mrcuriosity.top/post-images/1597586211487.png" alt="" loading="lazy"><br>
 (这里并没有想清楚具体实现是怎样的，包括 &quot;second highest conv&quot; 指的是第二层卷积还是倒数第二层，以及逻辑回归是如何区分是否有激活的，如果有看过论文的同学希望能在评论区赐教，感谢！)。<br>
 这篇博文中提到的差值方式是将两个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span></span></span></span>向量逐渐替换后查看最终生成结果是否渐变<br>
-[细节讲解]GAN: walking in latent space 如何探索潜在空间？结合DCGAN论文](https://www.pianshen.com/article/7041171502/)<br>
+<a href="https://www.pianshen.com/article/7041171502/">细节讲解GAN: walking in latent space 如何探索潜在空间？结合DCGAN论文</a><br>
 <img src="https://mrcuriosity.top/post-images/1597585683782.png" alt="" loading="lazy"></li>
 <li>通过转置卷积可视化学习到的特征<br>
 作者使用了论文<a href="https://arxiv.org/abs/1412.6806">Striving for Simplicity: The All Convolutional Net<br>
