@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mrcuriosity.top</id>
     <title>Curiosity&apos;s Blog</title>
-    <updated>2020-08-14T13:09:40.595Z</updated>
+    <updated>2020-08-16T14:09:12.532Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mrcuriosity.top"/>
     <link rel="self" href="https://mrcuriosity.top/atom.xml"/>
@@ -25,7 +25,57 @@
         <link href="https://mrcuriosity.top/post/dcgan-lun-wen-yue-du/">
         </link>
         <updated>2020-08-13T09:08:57.000Z</updated>
-        <content type="html"><![CDATA[<p>writing</p>
+        <content type="html"><![CDATA[<p>这篇文章发表于 ICLR2016，总体来说就是将 CNN 应用于 GAN 网络，得到了比较好的生成效果，主要贡献如下：</p>
+<ul>
+<li>提出了一种具有训练稳定性的卷积GAN结构，命名为 DCGAN (Deep Convolutional GANs)</li>
+<li>将 GAN 中的 Discriminator 的权重参数用于分类任务，得到了不错的结果，证明其特征提取的有效性</li>
+<li>通过可视化 GAN 的一些 filter，发现一些特定的的 filter 学会了画特定的物体</li>
+<li>实验发现了隐空间 (Latent Space) 向量的一些语义运算特性</li>
+</ul>
+<h2 id="模型结构">模型结构</h2>
+<p>文中提出的模型结构，指的是设计深度卷积 GAN 的一种设计范式，主要有如下几条：</p>
+<ul>
+<li>使用 strided conv 代替 pooling (G 中使用转置卷积)<br>
+个人肤浅地理解为在降采样/上采样的同时引入了可学习的参数，自然能够得到比 pooling 更好的效果</li>
+<li>不使用 FC 层<br>
+说实话这一段中间的部分没有特别理解，如下图，大意是 GAP (Global Average Pooling) 能提升稳定性但是会降低收敛速度，一个折中方案是直接将卷积后的特征与 G 的输入、D 的输出相连接，在 Generator 中，将第一层 (好像这里说到底还是 FC，github 中的实现也是使用 FC) 的结果 reshape 后接入后面的上采样运算，在 Discriminator 中，将最后一个卷积层的特征图压平成向量直接使用 softmax 分类。<br>
+<img src="https://mrcuriosity.top/post-images/1597584882936.png" alt="" loading="lazy"></li>
+<li>使用 BatchNorm 对模型训练有帮助<br>
+BN 能解决初始参数不佳的问题，帮助梯度在更深的模型中传播 (这应该是 BN 论文的原话)，但是盲目对所有层使用 BN 又会导致模式坍塌和不稳定...文中建议不要在 D 的输出和 G 的输入添加 BN (感觉越说越玄学)。<br>
+BN 起作用的理论依据可以参考：<a href="https://www.cnblogs.com/guoyaohua/p/8724433.html">深入理解Batch Normalization批标准化</a></li>
+</ul>
+<blockquote>
+<p>对于每个隐层神经元，把逐渐向非线性函数映射后向取值区间极限饱和区靠拢的输入分布强制拉回到均值为0方差为1的比较标准的正态分布，使得非线性变换函数的输入值落入对输入比较敏感的区域，以此避免梯度消失问题</p>
+</blockquote>
+<ul>
+<li>在 G 中使用 ReLU，输出层使用 Tanh，在 D 中使用 LeakyReLU<br>
+<img src="https://mrcuriosity.top/post-images/1597480354653.png" alt="文中用于 LSUN 数据集的模型结构" loading="lazy"><br>
+<img src="https://mrcuriosity.top/post-images/1597480503272.png" alt="5个 Epoch 后生成的卧室图像" loading="lazy"></li>
+</ul>
+<h2 id="内部结构可视化">内部结构可视化</h2>
+<p>这部分使用了几个方法尝试说明 GAN 内部学习到了丰富的语义信息</p>
+<ul>
+<li>从生成图像中删除物体<br>
+选取了150个生成的样本，其中有52个窗子，手工标注了 bbox 的位置，并用逻辑回归在 &quot;second highest conv&quot; 上进行分类，区分该区域是否能够激活窗子的特征，若被分类为激活出窗子的部分，则将其丢弃，并替换为随机样本。可以看到，最终生成的图片逐渐出现窗户的特征。<br>
+<img src="https://mrcuriosity.top/post-images/1597586211487.png" alt="" loading="lazy"><br>
+(这里并没有想清楚具体实现是怎样的，包括 &quot;second highest conv&quot; 指的是第二层卷积还是倒数第二层，以及逻辑回归是如何区分是否有激活的，如果有看过论文的同学希望能在评论区赐教，感谢！)。<br>
+这篇博文中提到的差值方式是将两个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span></span></span></span>向量逐渐替换后查看最终生成结果是否渐变<br>
+<a href="https://www.pianshen.com/article/7041171502/">细节讲解】GAN: walking in latent space 如何探索潜在空间？结合DCGAN论文</a><br>
+<img src="https://mrcuriosity.top/post-images/1597585683782.png" alt="" loading="lazy"></li>
+<li>通过转置卷积可视化学习到的特征<br>
+作者使用了论文<a href="https://arxiv.org/abs/1412.6806">Striving for Simplicity: The All Convolutional Net<br>
+</a>(实际最早的来源应该是<a href="https://arxiv.org/abs/1311.2901">Visualizing and Understanding Convolutional Networks<br>
+</a>)转置卷积可视化卷积核所关心的特征，具体原理还没去看，有空看了补上细节，可以看到训练的判别器中的卷积核会被各种形式的床的形状激活。<br>
+<img src="https://mrcuriosity.top/post-images/1597586495500.png" alt="" loading="lazy"></li>
+<li>类比 NLP 中的思想通过实验寻找向量的语义运算<br>
+使用不同形式的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span></span></span></span> 向量进行运算，发现了生成器隐空间中存在某些有意思的语义特征，如</li>
+</ul>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">戴</mi><mi mathvariant="normal">眼</mi><mi mathvariant="normal">镜</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">男</mi><mi mathvariant="normal">人</mi><mo>−</mo><mi mathvariant="normal">不</mi><mi mathvariant="normal">戴</mi><mi mathvariant="normal">眼</mi><mi mathvariant="normal">镜</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">男</mi><mi mathvariant="normal">人</mi><mo>+</mo><mi mathvariant="normal">不</mi><mi mathvariant="normal">戴</mi><mi mathvariant="normal">眼</mi><mi mathvariant="normal">镜</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">女</mi><mi mathvariant="normal">人</mi><mo>=</mo><mi mathvariant="normal">戴</mi><mi mathvariant="normal">眼</mi><mi mathvariant="normal">镜</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">女</mi><mi mathvariant="normal">人</mi></mrow><annotation encoding="application/x-tex">戴眼镜的男人-不戴眼镜的男人+不戴眼镜的女人=戴眼镜的女人
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord cjk_fallback">戴</span><span class="mord cjk_fallback">眼</span><span class="mord cjk_fallback">镜</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">男</span><span class="mord cjk_fallback">人</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord cjk_fallback">不</span><span class="mord cjk_fallback">戴</span><span class="mord cjk_fallback">眼</span><span class="mord cjk_fallback">镜</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">男</span><span class="mord cjk_fallback">人</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mord cjk_fallback">不</span><span class="mord cjk_fallback">戴</span><span class="mord cjk_fallback">眼</span><span class="mord cjk_fallback">镜</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">女</span><span class="mord cjk_fallback">人</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mord cjk_fallback">戴</span><span class="mord cjk_fallback">眼</span><span class="mord cjk_fallback">镜</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">女</span><span class="mord cjk_fallback">人</span></span></span></span></span></p>
+<figure data-type="image" tabindex="1"><img src="https://mrcuriosity.top/post-images/1597586721634.png" alt="" loading="lazy"></figure>
+<h2 id="参考">参考</h2>
+<p><a href="https://arxiv.org/abs/1511.06434v2">DCGAN</a><br>
+<a href="https://www.cnblogs.com/guoyaohua/p/8724433.html">深入理解Batch Normalization批标准化</a></p>
 ]]></content>
     </entry>
     <entry>
