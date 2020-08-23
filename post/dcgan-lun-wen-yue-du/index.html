@@ -1,114 +1,103 @@
-
-<!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
-
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>DCGAN 论文阅读 | Curiosity&#39;s Blog</title>
-<meta name="description" content="温故而知新">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://mrcuriosity.top/favicon.ico?v=1598144861010">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="shortcut icon" href="https://mrcuriosity.top/favicon.ico?v=1598145164552">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://mrcuriosity.top/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="DCGAN 论文阅读 | Curiosity&#39;s Blog - Atom Feed" href="https://mrcuriosity.top/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <meta name="description" content="这篇文章发表于 ICLR2016，总体来说就是将 CNN 应用于 GAN 网络，得到了比较好的生成效果，主要贡献如下：
 
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-174993688-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-174993688-1');
-</script>
-
-
+提出了一种具有训练稳定性的卷积GAN结构，命名为 DCGAN (Deep Convolutional GANs)
+将 ..." />
+    <meta name="keywords" content="论文阅读" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
   <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://mrcuriosity.top">
-        <img class="avatar" src="https://mrcuriosity.top/images/avatar.png?v=1598144861010" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://mrcuriosity.top">
-        <h1 class="site-title">Curiosity&#39;s Blog</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://mrcuriosity.top">
+  <img class="avatar" src="https://mrcuriosity.top/images/avatar.png?v=1598145164552" alt="">
+  </a>
+  <h1 class="site-title">
+    Curiosity&#39;s Blog
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
   </div>
 </div>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
-
-
-      <div class="content-container">
         <div class="post-detail">
-          
-            <div class="feature-container" style="background-image: url('https://mrcuriosity.top/post-images/dcgan-lun-wen-yue-du.png')">
-            </div>
-          
-          <h2 class="post-title">DCGAN 论文阅读</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2020-08-13</span>
-            
+          <article class="post">
+            <h2 class="post-title">
+              DCGAN 论文阅读
+            </h2>
+            <div class="post-info">
               <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://mrcuriosity.top/tag/HsHvgnf-K/">
-                    论文阅读
-                    
-                  </a>
-                
+                2020-08-13
               </span>
+              <span>
+                5 min read
+              </span>
+              
+                <a href="https://mrcuriosity.top/tag/HsHvgnf-K/" class="post-tag">
+                  # 论文阅读
+                </a>
+              
+            </div>
             
-          </div>
-          <div class="post-content">
-            <p>这篇文章发表于 ICLR2016，总体来说就是将 CNN 应用于 GAN 网络，得到了比较好的生成效果，主要贡献如下：</p>
+              <img class="post-feature-image" src="https://mrcuriosity.top/post-images/dcgan-lun-wen-yue-du.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>这篇文章发表于 ICLR2016，总体来说就是将 CNN 应用于 GAN 网络，得到了比较好的生成效果，主要贡献如下：</p>
 <ul>
 <li>提出了一种具有训练稳定性的卷积GAN结构，命名为 DCGAN (Deep Convolutional GANs)</li>
 <li>将 GAN 中的 Discriminator 的权重参数用于分类任务，得到了不错的结果，证明其特征提取的有效性</li>
@@ -161,57 +150,85 @@ BN 起作用的理论依据可以参考：<a href="https://www.cnblogs.com/guoya
 <a href="https://www.cnblogs.com/guoyaohua/p/8724433.html">深入理解Batch Normalization批标准化</a><br>
 [细节讲解]GAN: walking in latent space 如何探索潜在空间？结合DCGAN论文](https://www.pianshen.com/article/7041171502/)</p>
 
-          </div>
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84">模型结构</a></li>
+<li><a href="#%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84%E5%8F%AF%E8%A7%86%E5%8C%96">内部结构可视化</a></li>
+<li><a href="#%E5%8F%82%E8%80%83">参考</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
         </div>
 
         
           <div class="next-post">
-            <a class="purple-link" href="https://mrcuriosity.top/post/zi-zhi-dl-kuang-jia-ch1-ji-chu-li-lun/">
+            <div class="next">下一篇</div>
+            <a href="https://mrcuriosity.top/post/zi-zhi-dl-kuang-jia-ch1-ji-chu-li-lun/">
               <h3 class="post-title">
-                下一篇：自制DL框架 Ch1 基础理论
+                自制DL框架 Ch1 基础理论
               </h3>
             </a>
           </div>
-          
-      </div>
+        
 
-      
+        
 
-      <div class="site-footer">
-  <div class="slogan">温故而知新</div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://mrcuriosity.top/atom.xml" target="_blank">RSS</a>
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://mrcuriosity.top/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
 </div>
 
-
+      </div>
     </div>
-    <script type="application/javascript">
 
-hljs.initHighlightingOnLoad()
+    <script>
+      hljs.initHighlightingOnLoad()
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
 
-</script>
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
 
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
 
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
 
-
+    </script>
   </body>
 </html>
