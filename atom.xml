@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mrcuriosity.top</id>
     <title>Curiosity&apos;s Blog</title>
-    <updated>2020-08-23T01:13:04.241Z</updated>
+    <updated>2020-08-23T01:24:02.945Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mrcuriosity.top"/>
     <link rel="self" href="https://mrcuriosity.top/atom.xml"/>
@@ -76,7 +76,7 @@ BN 起作用的理论依据可以参考：<a href="https://www.cnblogs.com/guoya
 <h2 id="参考">参考</h2>
 <p><a href="https://arxiv.org/abs/1511.06434v2">DCGAN</a><br>
 <a href="https://www.cnblogs.com/guoyaohua/p/8724433.html">深入理解Batch Normalization批标准化</a><br>
-[细节讲解]GAN: walking in latent space 如何探索潜在空间？结合DCGAN论文](https://www.pianshen.com/article/7041171502/)</p>
+[细节讲解](GAN: walking in latent space 如何探索潜在空间？结合DCGAN论文](https://www.pianshen.com/article/7041171502/)</p>
 ]]></content>
     </entry>
     <entry>
