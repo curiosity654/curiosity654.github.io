@@ -1,200 +1,39 @@
+
+
+<!doctype html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
-
-<title>Curiosity&#39;s Blog</title>
-<meta name="description" content="温故而知新">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://mrcuriosity.top/favicon.ico?v=1598144601218">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="https://mrcuriosity.top/styles/main.css">
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-174993688-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-174993688-1');
-</script>
-
-
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>文章归档 | Curiosity&#39;s Blog</title>
+<meta name="referrer" content="never" />
+<link rel="shortcut icon" href="https://mrcuriosity.top/favicon.ico">
+<link rel="stylesheet" type="text/css" href="https://mrcuriosity.top/styles/main.css">
   </head>
   <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://mrcuriosity.top">
-        <img class="avatar" src="https://mrcuriosity.top/images/avatar.png?v=1598144601218" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://mrcuriosity.top">
-        <h1 class="site-title">Curiosity&#39;s Blog</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
-</div>
-
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
+    <!-- start: #wrapper -->
+    <header id="header" style="">
+        <div class="header-container">
+  <h1 class="site-title"><a href="https://mrcuriosity.top">Curiosity&#39;s Blog</a></h1>
+  <h2 class="site-description">温故而知新</h2>
+  <nav class="main-navigation">
+    <ul id="" class="">
       
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
+      <li class="" ><a href="/" class="menu">首页</a></li>
       
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
+      <li class="" ><a href="/archives" class="menu">归档</a></li>
       
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
+      <li class="" ><a href="/tags" class="menu">标签</a></li>
       
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
+      <li class="" ><a href="/post/about" class="menu">关于</a></li>
       
-    </div>
-  </div>
-</transition>
-
-
-        <div class="content-container">
-          
-          
-
-<div class="archives-container">
-  
-    <h2 class="year">2020</h2>
-    
-      
-        <article class="post">
-          <a href="https://mrcuriosity.top/post/ugitat-lun-wen-fu-xian-ch1/">
-            <h2 class="post-title">
-              UGITAT 论文复现 Ch1 源码阅读
-              <small>2020-08-14</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mrcuriosity.top/post/dcgan-lun-wen-yue-du/">
-            <h2 class="post-title">
-              DCGAN 论文阅读
-              <small>2020-08-13</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mrcuriosity.top/post/zi-zhi-dl-kuang-jia-ch1-ji-chu-li-lun/">
-            <h2 class="post-title">
-              自制DL框架 Ch1 基础理论
-              <small>2020-08-12</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mrcuriosity.top/post/zi-zhi-dl-kuang-jia-ch3-ji-chu-shu-ju-jie-gou/">
-            <h2 class="post-title">
-              自制DL框架 Ch3 基础数据结构
-              <small>2020-08-12</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mrcuriosity.top/post/zi-zhi-dl-kuang-jia-ch2-huan-jing-pei-zhi/">
-            <h2 class="post-title">
-              自制DL框架 Ch2 环境配置
-              <small>2020-08-12</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://mrcuriosity.top/post/u-gat-it-lun-wen-yue-du/">
-            <h2 class="post-title">
-              U-GAT-IT 论文阅读
-              <small>2020-08-09</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-    
-  
-    <h2 class="year">2018</h2>
+    </ul>
+  </nav>
+  <div class="my_socials">
     
       
     
       
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-        <article class="post">
-          <a href="https://mrcuriosity.top/post/hello-gridea/">
-            <h2 class="post-title">
-              Hello Gridea
-              <small>2018-12-12</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-  
-</div>
-
-
-        </div>
-
-        <div class="site-footer">
-  <div class="slogan">温故而知新</div>
-  <div class="social-container">
     
       
     
@@ -207,27 +46,160 @@
       
     
   </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://mrcuriosity.top/atom.xml" target="_blank">RSS</a>
 </div>
+    </header>
+
+    <div class="wrapper">
+    <div class="content posts post archive hentry">
+        <h1>全站标签</h1>
+        <ul class="archive-list ">
+            
+            <li class="archive-item tags-item">
+                <img class="archive-list-image" src="https://mrcuriosity.top/media/images/sIHWC0LtY.png"></img>
+                <a href="https://mrcuriosity.top/tag/sIHWC0LtY/">论文复现</a>
+                <span class="archive-item-meta">sIHWC0LtY</span>
+            </li>
+            
+            <li class="archive-item tags-item">
+                <img class="archive-list-image" src="https://mrcuriosity.top/media/images/HsHvgnf-K.png"></img>
+                <a href="https://mrcuriosity.top/tag/HsHvgnf-K/">论文阅读</a>
+                <span class="archive-item-meta">HsHvgnf-K</span>
+            </li>
+            
+            <li class="archive-item tags-item">
+                <img class="archive-list-image" src="https://mrcuriosity.top/media/images/StlSdXPG9.png"></img>
+                <a href="https://mrcuriosity.top/tag/StlSdXPG9/">AI框架</a>
+                <span class="archive-item-meta">StlSdXPG9</span>
+            </li>
+            
+            <li class="archive-item tags-item">
+                <img class="archive-list-image" src="https://mrcuriosity.top/media/images/72oJWWaHS.png"></img>
+                <a href="https://mrcuriosity.top/tag/72oJWWaHS/">GAN</a>
+                <span class="archive-item-meta">72oJWWaHS</span>
+            </li>
+            
+            <li class="archive-item tags-item">
+                <img class="archive-list-image" src="https://mrcuriosity.top/media/images/g-T-V_KMe.png"></img>
+                <a href="https://mrcuriosity.top/tag/g-T-V_KMe/">Gridea</a>
+                <span class="archive-item-meta">g-T-V_KMe</span>
+            </li>
+            
+        </ul>
+        <div class="clear"></div>
+
+        <h1>文章归档</h1>
+        <span class="postss">共 8 篇文章</span>
+
+        
+            <h2 class="year archive-year">2020</h2>
+                <ul class="archive-list">
+            
+                
+                        <li class="archive-item">
+                            <img class="archive-list-image" src="https://mrcuriosity.top/media/images/sIHWC0LtY.png"></img>
+                            <a href="https://mrcuriosity.top/post/ugitat-lun-wen-fu-xian-ch1/">UGITAT 论文复现 Ch1 源码阅读</a>
+                            <time class="date" style="text-align:left;"><span class="archive-item-meta datetime">2020-08-14</span></time>
+                        </li>
+                
+            
+                
+                        <li class="archive-item">
+                            <img class="archive-list-image" src="https://mrcuriosity.top/post-images/dcgan-lun-wen-yue-du.png"></img>
+                            <a href="https://mrcuriosity.top/post/dcgan-lun-wen-yue-du/">DCGAN 论文阅读</a>
+                            <time class="date" style="text-align:left;"><span class="archive-item-meta datetime">2020-08-13</span></time>
+                        </li>
+                
+            
+                
+                        <li class="archive-item">
+                            <img class="archive-list-image" src=""></img>
+                            <a href="https://mrcuriosity.top/post/zi-zhi-dl-kuang-jia-ch1-ji-chu-li-lun/">自制DL框架 Ch1 基础理论</a>
+                            <time class="date" style="text-align:left;"><span class="archive-item-meta datetime">2020-08-12</span></time>
+                        </li>
+                
+            
+                
+                        <li class="archive-item">
+                            <img class="archive-list-image" src=""></img>
+                            <a href="https://mrcuriosity.top/post/zi-zhi-dl-kuang-jia-ch3-ji-chu-shu-ju-jie-gou/">自制DL框架 Ch3 基础数据结构</a>
+                            <time class="date" style="text-align:left;"><span class="archive-item-meta datetime">2020-08-12</span></time>
+                        </li>
+                
+            
+                
+                        <li class="archive-item">
+                            <img class="archive-list-image" src="https://mrcuriosity.top/media/images/StlSdXPG9.png"></img>
+                            <a href="https://mrcuriosity.top/post/zi-zhi-dl-kuang-jia-ch2-huan-jing-pei-zhi/">自制DL框架 Ch2 环境配置</a>
+                            <time class="date" style="text-align:left;"><span class="archive-item-meta datetime">2020-08-12</span></time>
+                        </li>
+                
+            
+                
+                        <li class="archive-item">
+                            <img class="archive-list-image" src="https://mrcuriosity.top/post-images/u-gat-it-lun-wen-yue-du.png"></img>
+                            <a href="https://mrcuriosity.top/post/u-gat-it-lun-wen-yue-du/">U-GAT-IT 论文阅读</a>
+                            <time class="date" style="text-align:left;"><span class="archive-item-meta datetime">2020-08-09</span></time>
+                        </li>
+                
+            
+                
+            
+                </ul>
+            <div class="clear"></div>
+        
+            <h2 class="year archive-year">2018</h2>
+                <ul class="archive-list">
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                        <li class="archive-item">
+                            <img class="archive-list-image" src="https://mrcuriosity.top/post-images/hello-gridea.png"></img>
+                            <a href="https://mrcuriosity.top/post/hello-gridea/">Hello Gridea</a>
+                            <time class="date" style="text-align:left;"><span class="archive-item-meta datetime">2018-12-12</span></time>
+                        </li>
+                
+            
+                </ul>
+            <div class="clear"></div>
+        
+    </div>
+            
+              
+        <footer id="footer" class="">
+        <p class="published border-effect">
+          ©2020 共 8 篇文章
+          <br/>
+          Theme <a href="https://immmmm.com/gridea-theme-motify/" target="_blank">「Motify」</a> Powered by <a href="https://gridea.dev/" target="_blank">「Gridea」</a>
+        </p>
+    </footer>
+
+    <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
 
 
-      </div>
-      <script type="application/javascript">
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
-</script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/prism.min.js"></script>
 
 
+<script src="https://cdn.jsdelivr.net/gh/lmm214/immmmm/media/js/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/lmm214/immmmm/media/js/lately.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/lmm214/immmmm/media/js/waterfall.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/lmm214/immmmm/media/js/slimbox2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/lmm214/immmmm/media/js/functions.js"></script>
 
+
+<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
 
     </div>
+    <!-- end: #wrapper -->
   </body>
 </html>
