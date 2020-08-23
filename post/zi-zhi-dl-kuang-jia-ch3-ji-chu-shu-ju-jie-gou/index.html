@@ -1,80 +1,101 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+<meta charset="utf-8" >
+
 <title>自制DL框架 Ch3 基础数据结构 | Curiosity&#39;s Blog</title>
-<meta name="referrer" content="never" />
-<link rel="shortcut icon" href="https://mrcuriosity.top/favicon.ico">
-<link rel="stylesheet" type="text/css" href="https://mrcuriosity.top/styles/main.css">
-    <meta name="description" content="Blob
-目前这个框架的重点是一些简单的 CV 网络结构，Caffe 的基础数据结构是 Blob，用来存储训练数据、网络权重、前向/反向传播的梯度等，这里基于 Armadillo 的 cube（类似三维张量）实现 Blob 数据类型。
-cl..." />
-    
-    
-    <link rel="prefetch" href="https://mrcuriosity.top/post/zi-zhi-dl-kuang-jia-ch1-ji-chu-li-lun/">
-    
-    
-    <link rel="prefetch" href="https://mrcuriosity.top/post/zi-zhi-dl-kuang-jia-ch2-huan-jing-pei-zhi/">
-    
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://mrcuriosity.top/favicon.ico?v=1598144861010">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://mrcuriosity.top/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-174993688-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-174993688-1');
+</script>
+
+
   </head>
   <body>
-    <!-- start: #wrapper -->
-    <header id="header" style="">
-        <div class="header-container">
-  <h1 class="site-title"><a href="https://mrcuriosity.top">Curiosity&#39;s Blog</a></h1>
-  <h2 class="site-description">温故而知新</h2>
-  <nav class="main-navigation">
-    <ul id="" class="">
-      
-      <li class="" ><a href="/" class="menu">首页</a></li>
-      
-      <li class="" ><a href="/archives" class="menu">归档</a></li>
-      
-      <li class="" ><a href="/tags" class="menu">标签</a></li>
-      
-      <li class="" ><a href="/post/about" class="menu">关于</a></li>
-      
-    </ul>
-  </nav>
-  <div class="my_socials">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://mrcuriosity.top">
+        <img class="avatar" src="https://mrcuriosity.top/images/avatar.png?v=1598144861010" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://mrcuriosity.top">
+        <h1 class="site-title">Curiosity&#39;s Blog</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
   </div>
 </div>
-    </header>
-    <div class="wrapper single">
-        <div class="content">
-            <div id="posts" class="posts">
-            <!-- start: .articles -->
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">自制DL框架 Ch3 基础数据结构</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-08-12</span>
             
-            <article class="post hentry format-daily format-">
-                <header>
-                    <time class="date">
-                        <i class="fa">
-                            <span class="datetime">2020-08-12</span>
-                        </i>
-                    </time>
-                </header>
-                <h1 class="entry-title">
-                    自制DL框架 Ch3 基础数据结构
-                </h1>
-                <div class="post-content">
-                    <div class="post-hentry">
-                        <h1 id="blob">Blob</h1>
+          </div>
+          <div class="post-content">
+            <h1 id="blob">Blob</h1>
 <p>目前这个框架的重点是一些简单的 CV 网络结构，Caffe 的基础数据结构是 Blob，用来存储训练数据、网络权重、前向/反向传播的梯度等，这里基于 Armadillo 的 cube（类似三维张量）实现 Blob 数据类型。</p>
 <pre><code class="language-cpp">class Blob
 {
@@ -98,56 +119,55 @@ private:
 <p>实现了基本的构造函数，可以选择0、高斯等多种初始化方式、基于 vector 的构造函数，重载了 <code>[]</code> 和 <code>*=</code> 运算符，以及训练时分批读取的 subBlob 函数。</p>
 <h1 id="数据读取">数据读取</h1>
 
-                        <div class="clear"></div>
-                    </div>
-                </div>
-            </article>
-            
-
-                <div class="pager">
-                    
-                        <a class="prev" href="https://mrcuriosity.top/post/zi-zhi-dl-kuang-jia-ch1-ji-chu-li-lun/">自制DL框架 Ch1 基础理论</a>
-                    
-                    
-                         <a class="next" href="https://mrcuriosity.top/post/zi-zhi-dl-kuang-jia-ch2-huan-jing-pei-zhi/">自制DL框架 Ch2 环境配置</a>
-                    
-                    <div class="clear"></div>
-                </div>
-
-            
-              <div id="comments">
-                <p>请到客户端“主题--自定义配置--valine”中填入ID和KEY</p>
-              </div>
-              <div class="clear"></div>
-            
-            
-            </div>
-
+          </div>
         </div>
 
-            <footer id="footer" class="">
-        <p class="published border-effect">
-          ©2020 共 8 篇文章
-          <br/>
-          Theme <a href="https://immmmm.com/gridea-theme-motify/" target="_blank">「Motify」</a> Powered by <a href="https://gridea.dev/" target="_blank">「Gridea」</a>
-        </p>
-    </footer>
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://mrcuriosity.top/post/zi-zhi-dl-kuang-jia-ch2-huan-jing-pei-zhi/">
+              <h3 class="post-title">
+                下一篇：自制DL框架 Ch2 环境配置
+              </h3>
+            </a>
+          </div>
+          
+      </div>
 
-    <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
+      
+
+      <div class="site-footer">
+  <div class="slogan">温故而知新</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://mrcuriosity.top/atom.xml" target="_blank">RSS</a>
+</div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/prism.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/gh/lmm214/immmmm/media/js/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/lmm214/immmmm/media/js/lately.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/lmm214/immmmm/media/js/waterfall.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/lmm214/immmmm/media/js/slimbox2.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/lmm214/immmmm/media/js/functions.js"></script>
-
-
-<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
     </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
 
 
 

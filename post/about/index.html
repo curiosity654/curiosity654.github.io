@@ -1,48 +1,119 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Curiosity&#39;s Blog</title>
-<meta name="referrer" content="never" />
-<link rel="shortcut icon" href="https://mrcuriosity.top/favicon.ico">
-<link rel="stylesheet" type="text/css" href="https://mrcuriosity.top/styles/main.css">
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
+    
+<meta charset="utf-8" >
 
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
-    
-    
-    
+<title>关于 | Curiosity&#39;s Blog</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://mrcuriosity.top/favicon.ico?v=1598144861010">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://mrcuriosity.top/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-174993688-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-174993688-1');
+</script>
+
+
   </head>
   <body>
-    <!-- start: #wrapper -->
-    <header id="header" style="">
-        <div class="header-container">
-  <h1 class="site-title"><a href="https://mrcuriosity.top">Curiosity&#39;s Blog</a></h1>
-  <h2 class="site-description">温故而知新</h2>
-  <nav class="main-navigation">
-    <ul id="" class="">
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://mrcuriosity.top">
+        <img class="avatar" src="https://mrcuriosity.top/images/avatar.png?v=1598144861010" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://mrcuriosity.top">
+        <h1 class="site-title">Curiosity&#39;s Blog</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
       
-      <li class="" ><a href="/" class="menu">首页</a></li>
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
       
-      <li class="" ><a href="/archives" class="menu">归档</a></li>
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
       
-      <li class="" ><a href="/tags" class="menu">标签</a></li>
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
       
-      <li class="" ><a href="/post/about" class="menu">关于</a></li>
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
       
-    </ul>
-  </nav>
-  <div class="my_socials">
-    
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">关于</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-01-25</span>
+            
+          </div>
+          <div class="post-content">
+            <blockquote>
+<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+</blockquote>
+<h2 id="关于本站">🏠 关于本站</h2>
+<h2 id="博主是谁">👨‍💻 博主是谁</h2>
+<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
+<h2 id="联系我呀">📬 联系我呀</h2>
+
+          </div>
+        </div>
+
+        
+      </div>
+
       
-    
-      
+
+      <div class="site-footer">
+  <div class="slogan">温故而知新</div>
+  <div class="social-container">
     
       
     
@@ -55,84 +126,24 @@
       
     
   </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://mrcuriosity.top/atom.xml" target="_blank">RSS</a>
 </div>
-    </header>
-    <div class="wrapper single">
-        <div class="content">
-            <div id="posts" class="posts">
-            <!-- start: .articles -->
-            
-            <article class="post hentry format-daily format-">
-                <header>
-                    <time class="date">
-                        <i class="fa">
-                            <span class="datetime">2019-01-25</span>
-                        </i>
-                    </time>
-                </header>
-                <h1 class="entry-title">
-                    关于
-                </h1>
-                <div class="post-content">
-                    <div class="post-hentry">
-                        <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
-
-                        <div class="clear"></div>
-                    </div>
-                </div>
-            </article>
-            
-
-                <div class="pager">
-                    
-                        <span class="prev">已是最新一篇</span>
-                    
-                    
-                        <span class="next">已是最早一篇</span>
-                    
-                    <div class="clear"></div>
-                </div>
-
-            
-              <div id="comments">
-                <p>请到客户端“主题--自定义配置--valine”中填入ID和KEY</p>
-              </div>
-              <div class="clear"></div>
-            
-            
-            </div>
-
-        </div>
-
-            <footer id="footer" class="">
-        <p class="published border-effect">
-          ©2020 共 8 篇文章
-          <br/>
-          Theme <a href="https://immmmm.com/gridea-theme-motify/" target="_blank">「Motify」</a> Powered by <a href="https://gridea.dev/" target="_blank">「Gridea」</a>
-        </p>
-    </footer>
-
-    <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
 
 
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/prism.min.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/gh/lmm214/immmmm/media/js/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/lmm214/immmmm/media/js/lately.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/lmm214/immmmm/media/js/waterfall.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/lmm214/immmmm/media/js/slimbox2.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/lmm214/immmmm/media/js/functions.js"></script>
-
-
-<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
     </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
 
 
 
